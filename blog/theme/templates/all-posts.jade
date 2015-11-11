@@ -1,0 +1,78 @@
+!!! 5
+//
+  |Template convert from bilalaslam.com.Stylesheet base on Casper
+html
+  head
+    meta(charset='utf-8')
+    title Hawkyの责任田
+    link(rel='shortcut icon',  href='/blog/theme/static/favicon.ico')
+    // link(rel='stylesheet', type='text/css', href='/blog/theme/static/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', type='text/css', href='/blog/theme/static/assets/css/main.css')
+    link(rel='stylesheet', type='text/css', href='/blog/theme/static/assets/css/google-fonts.css')
+    // link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400')
+    link(rel='canonical', href=reverse_url('page',page_num))
+    if (page_num > 1)
+      link(rel='prev', href=reverse_url('page',page_num-1))
+    if (page_num < total_page_count)
+      link(rel='next', href=reverse_url('page',page_num+1))
+    //
+      .navbar.navbar-inverse(roll='navigation',style="margin-bottom:0px;")
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle(data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href='#') Hawky
+
+    include badu-tongji.js
+  body.home-template.purecasper
+    header#site-head
+      .vertical
+        .inner
+          h1.blog-title Hawkyの责任田
+          h2.blog-description 程序员=({日拱一卒:功不唐捐},)
+      a.scroll-down.icon-arrow-left(href='#content', data-offset='-45')
+        span.hidden Scroll Down
+    nav#navbar.pure-menu.pure-menu-open.pure-menu-horizontal
+      ul
+        li
+          a(href='/blog/#') 归档
+        li
+          a(href='/blog/theme/static/about.htm') 关于
+    main#content.content(role='main')
+      each post in posts
+        article.post
+          header.post-header
+            h2.post-title
+              a(href=reverse_url('post',post.slug))!=post.title
+          section.post-excerpt
+            p
+              !=post.display_summary
+              span.read-more
+              a.btn.btn-ghostinfo(href=reverse_url('post',post.slug)) Read on →
+          footer.post-meta
+            time.post-date(datetime=post.local_short_date)=post.local_short_date
+
+
+      nav.pagination(role='navigation')
+        if (page_num > 1)
+          a.newer-posts(href=reverse_url('page',page_num-1)) ← 上一页
+        span.page-number Page &nbsp; #{page_num} &nbsp; of &nbsp; #{total_page_count}
+        if (page_num < total_page_count)
+          a.older-posts(href=reverse_url('page',page_num+1)) 下一页 →
+
+    footer.site-footer
+      a.subscribe.icon-feed(href="http://www.hawky.cn/rss/")
+        span.tooltip Subscribe!
+      .inner
+         section.copyright All content copyright&nbsp;
+           a(href="http://www.hawky.cn/blog") hawky.cn
+           &nbsp;&copy; 2014 &bull; All rights reserved.
+         section.poweredby Powered by&nbsp;
+           a.icon-ghost(href="http://ghost.org") Ghost&nbsp;
+           | and&nbsp;
+           a(href="https://github.com/ajdavis/motor-blog") motor-blog
+    // script(type='text/javascript', src='/blog/theme/static/bootstrap/js/bootstrap.js')
+

@@ -1,0 +1,39 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    title=post.title
+    link(rel='shortcut icon',  href='/blog/theme/static/favicon.ico')
+    link(rel='stylesheet', type='text/css', href='/blog/theme/static/assets/css/screen.css')
+    link(rel='stylesheet', type='text/css', href='/blog/theme/static/code-style/zenburn.css')
+    link(rel='stylesheet', type='text/css', href='/blog/theme/static/assets/css/google-fonts.css')
+    include badu-tongji.js
+  body.post-template
+    header.main-header.post-head.no-cover
+      nav.main-nav.clearfix
+        a.back-button.icon-arrow-left(href='/blog') Home
+    main.content(role='main')
+      article.post
+        header.post-header
+          h1.post-title
+            a(href= reverse_url('post',post.slug))
+              = post.title
+          section.post-meta
+            time.post-date= post.local_short_date
+        section.post-content
+          != post.body
+        footer.post-footer
+          figure.author-image
+            a.img(href="/blog/theme/static/about.htm",style="background-image: url(/blog/theme/static/blog_sketch.png)")
+    footer.site-footer
+      a.subscribe.icon-feed(href="http://hawky.cn/rss/")
+        span.tooltip Subscribe!
+      .inner
+         section.copyright All content copyright&nbsp;
+           a(href="http://hawky.cn/blog") hawky.cn
+           &nbsp;&copy; 2014 &bull; All rights reserved.
+         section.poweredby Powered by&nbsp;
+           a.icon-ghost(href="http://ghost.org") Ghost&nbsp;
+           | and&nbsp;
+           a(href="https://github.com/ajdavis/motor-blog") motor-blog
+
